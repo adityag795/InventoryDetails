@@ -88,8 +88,6 @@
             this.txtCustomer.Name = "txtCustomer";
             this.txtCustomer.Size = new System.Drawing.Size(221, 20);
             this.txtCustomer.TabIndex = 21;
-            this.txtCustomer.TextChanged += new System.EventHandler(this.txtCustomer_TextChanged);
-            this.txtCustomer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCustomer_KeyPress);
             // 
             // lblCustomerName
             // 

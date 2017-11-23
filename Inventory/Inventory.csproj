@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InvoiceGenerator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InvoiceGenerator.Designer.cs">
+      <DependentUpon>InvoiceGenerator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Master\Customer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,9 @@
     <Compile Include="SalesPerson.Designer.cs">
       <DependentUpon>SalesPerson.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="InvoiceGenerator.resx">
+      <DependentUpon>InvoiceGenerator.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Master\Customer.resx">
       <DependentUpon>Customer.cs</DependentUpon>
     </EmbeddedResource>

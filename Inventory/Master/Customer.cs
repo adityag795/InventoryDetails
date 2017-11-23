@@ -62,15 +62,6 @@ namespace Inventory
         {
             MessageBox.Show(Convert.ToString(dgvCustomer.SelectedRows[0].Index));
         }
-
-        private void txtCustomer_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtCustomer_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
+               
     }
 }
