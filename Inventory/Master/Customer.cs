@@ -29,7 +29,9 @@ namespace Inventory
                 using (con = new SqlConnection(Cstring))
                 {
                     // CategoryId is an identity column and primary key.
-                    string query = "INSERT INTO tblCustomer (CustomerName) VALUES ('" + txtCustomer.Text + "')";
+                    string query = "INSERT INTO tblCustomer (CustomerName, MobileNo, Address, Email, PANcard) VALUES ('" 
+                        + txtCustomer.Text + "', '" + txtMobileNum.Text + "', '" + txtAddress.Text + "', '" 
+                        + txtEmail.Text + "', '" + txtPan.Text + "')";
                     cmd = new SqlCommand(query, con);
                     con.Open();
                     int rowsAdded = cmd.ExecuteNonQuery();
@@ -53,14 +55,9 @@ namespace Inventory
             dgvCustomer.DataSource = dt;
         }
 
-        private void dgvCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void dgvCustomer_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Convert.ToString(dgvCustomer.SelectedRows[0].Index));
+            //MessageBox.Show(Convert.ToString(dgvCustomer.SelectedRows[0].Index));
         }
                
     }

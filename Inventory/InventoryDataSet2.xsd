@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="InventoryDataSet2" targetNamespace="http://tempuri.org/InventoryDataSet2.xsd" xmlns:mstns="http://tempuri.org/InventoryDataSet2.xsd" xmlns="http://tempuri.org/InventoryDataSet2.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="InventoryConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="InventoryConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Inventory.Properties.Settings.GlobalReference.Default.InventoryConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblTaxTableAdapter" GeneratorDataComponentClassName="tblTaxTableAdapter" Name="tblTax" UserDataComponentName="tblTaxTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="InventoryConnectionString (Settings)" DbObjectName="Inventory.dbo.tblTax" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT taxName, tax FROM dbo.tblTax</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="taxName" DataSetColumn="taxName" />
+              <Mapping SourceColumn="tax" DataSetColumn="tax" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="InventoryDataSet2" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="InventoryDataSet2" msprop:Generator_UserDSName="InventoryDataSet2">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tblTax" msprop:Generator_TableClassName="tblTaxDataTable" msprop:Generator_TableVarName="tabletblTax" msprop:Generator_TablePropName="tblTax" msprop:Generator_RowDeletingName="tblTaxRowDeleting" msprop:Generator_RowChangingName="tblTaxRowChanging" msprop:Generator_RowEvHandlerName="tblTaxRowChangeEventHandler" msprop:Generator_RowDeletedName="tblTaxRowDeleted" msprop:Generator_UserTableName="tblTax" msprop:Generator_RowChangedName="tblTaxRowChanged" msprop:Generator_RowEvArgName="tblTaxRowChangeEvent" msprop:Generator_RowClassName="tblTaxRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="taxName" msprop:Generator_ColumnVarNameInTable="columntaxName" msprop:Generator_ColumnPropNameInRow="taxName" msprop:Generator_ColumnPropNameInTable="taxNameColumn" msprop:Generator_UserColumnName="taxName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="tax" msprop:Generator_ColumnVarNameInTable="columntax" msprop:Generator_ColumnPropNameInRow="tax" msprop:Generator_ColumnPropNameInTable="taxColumn" msprop:Generator_UserColumnName="tax" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

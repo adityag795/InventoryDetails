@@ -37,6 +37,7 @@
             this.customerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wareHouseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesPersonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.taxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addOrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.orderStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,7 +72,8 @@
             this.categoryCToolStripMenuItem,
             this.customerToolStripMenuItem,
             this.wareHouseToolStripMenuItem,
-            this.salesPersonToolStripMenuItem});
+            this.salesPersonToolStripMenuItem,
+            this.taxToolStripMenuItem});
             this.masterToolStripMenuItem.Font = new System.Drawing.Font("Dubai Medium", 11F);
             this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
             this.masterToolStripMenuItem.Size = new System.Drawing.Size(67, 29);
@@ -118,6 +120,13 @@
             this.salesPersonToolStripMenuItem.Size = new System.Drawing.Size(163, 30);
             this.salesPersonToolStripMenuItem.Text = "Sales Person";
             this.salesPersonToolStripMenuItem.Click += new System.EventHandler(this.salesPersonToolStripMenuItem_Click);
+            // 
+            // taxToolStripMenuItem
+            // 
+            this.taxToolStripMenuItem.Name = "taxToolStripMenuItem";
+            this.taxToolStripMenuItem.Size = new System.Drawing.Size(163, 30);
+            this.taxToolStripMenuItem.Text = "Tax";
+            this.taxToolStripMenuItem.Click += new System.EventHandler(this.taxToolStripMenuItem_Click);
             // 
             // ordersToolStripMenuItem
             // 
@@ -227,6 +236,7 @@
         private System.Windows.Forms.ToolStripMenuItem customerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem wareHouseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salesPersonToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem taxToolStripMenuItem;
     }
 }
 

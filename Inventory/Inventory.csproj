@@ -47,6 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InventoryDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InventoryDataSet2.xsd</DependentUpon>
+    </Compile>
     <Compile Include="InvoiceGenerator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +148,12 @@
     <Compile Include="SalesPerson.Designer.cs">
       <DependentUpon>SalesPerson.cs</DependentUpon>
     </Compile>
+    <Compile Include="Master\Tax.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\Tax.Designer.cs">
+      <DependentUpon>Tax.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="InvoiceGenerator.resx">
       <DependentUpon>InvoiceGenerator.cs</DependentUpon>
     </EmbeddedResource>
@@ -194,6 +205,9 @@
     <EmbeddedResource Include="SalesPerson.resx">
       <DependentUpon>SalesPerson.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Master\Tax.resx">
+      <DependentUpon>Tax.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config" />
     <None Include="InventoryDataSet.xsc">
       <DependentUpon>InventoryDataSet.xsd</DependentUpon>
@@ -216,6 +230,17 @@
     </None>
     <None Include="InventoryDataSet1.xss">
       <DependentUpon>InventoryDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="InventoryDataSet2.xsc">
+      <DependentUpon>InventoryDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="InventoryDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InventoryDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="InventoryDataSet2.xss">
+      <DependentUpon>InventoryDataSet2.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

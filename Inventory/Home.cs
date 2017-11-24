@@ -62,5 +62,11 @@ namespace Inventory
             SalesPerson sp = new SalesPerson();
             sp.ShowDialog();
         }
+
+        private void taxToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Tax tx = new Tax();
+            tx.ShowDialog();
+        }
     }
 }
