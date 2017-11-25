@@ -38,20 +38,22 @@
             this.btnAddInventory = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
             this.ddlBrandName = new System.Windows.Forms.ComboBox();
-            this.ddlCategoryName = new System.Windows.Forms.ComboBox();
-            this.inventoryDataSet = new Inventory.InventoryDataSet();
             this.tblBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tblBrandTableAdapter = new Inventory.InventoryDataSetTableAdapters.tblBrandTableAdapter();
-            this.inventoryDataSet1 = new Inventory.InventoryDataSet1();
+            this.inventoryDataSet = new Inventory.InventoryDataSet();
+            this.ddlCategoryName = new System.Windows.Forms.ComboBox();
             this.tblCategoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.inventoryDataSet1 = new Inventory.InventoryDataSet1();
+            this.tblBrandTableAdapter = new Inventory.InventoryDataSetTableAdapters.tblBrandTableAdapter();
             this.tblCategoryTableAdapter = new Inventory.InventoryDataSet1TableAdapters.tblCategoryTableAdapter();
             this.dgvItems = new System.Windows.Forms.DataGridView();
             this.lblPrice = new System.Windows.Forms.Label();
             this.txtPrice = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet)).BeginInit();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tblBrandBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblCategoryBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,7 +107,7 @@
             // btnAddInventory
             // 
             this.btnAddInventory.Font = new System.Drawing.Font("Dubai Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddInventory.Location = new System.Drawing.Point(77, 233);
+            this.btnAddInventory.Location = new System.Drawing.Point(77, 277);
             this.btnAddInventory.Name = "btnAddInventory";
             this.btnAddInventory.Size = new System.Drawing.Size(136, 34);
             this.btnAddInventory.TabIndex = 7;
@@ -116,7 +118,7 @@
             // btnView
             // 
             this.btnView.Font = new System.Drawing.Font("Dubai Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnView.Location = new System.Drawing.Point(396, 233);
+            this.btnView.Location = new System.Drawing.Point(396, 277);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 34);
             this.btnView.TabIndex = 8;
@@ -133,8 +135,17 @@
             this.ddlBrandName.Name = "ddlBrandName";
             this.ddlBrandName.Size = new System.Drawing.Size(331, 21);
             this.ddlBrandName.TabIndex = 10;
-            this.ddlBrandName.Text = "-----Select Brand-----";
             this.ddlBrandName.ValueMember = "BrandName";
+            // 
+            // tblBrandBindingSource
+            // 
+            this.tblBrandBindingSource.DataMember = "tblBrand";
+            this.tblBrandBindingSource.DataSource = this.inventoryDataSet;
+            // 
+            // inventoryDataSet
+            // 
+            this.inventoryDataSet.DataSetName = "InventoryDataSet";
+            this.inventoryDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // ddlCategoryName
             // 
@@ -145,32 +156,21 @@
             this.ddlCategoryName.Name = "ddlCategoryName";
             this.ddlCategoryName.Size = new System.Drawing.Size(331, 21);
             this.ddlCategoryName.TabIndex = 11;
-            this.ddlCategoryName.Text = "-----Select Category-----";
             this.ddlCategoryName.ValueMember = "CategoryName";
             // 
-            // inventoryDataSet
+            // tblCategoryBindingSource
             // 
-            this.inventoryDataSet.DataSetName = "InventoryDataSet";
-            this.inventoryDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tblBrandBindingSource
-            // 
-            this.tblBrandBindingSource.DataMember = "tblBrand";
-            this.tblBrandBindingSource.DataSource = this.inventoryDataSet;
-            // 
-            // tblBrandTableAdapter
-            // 
-            this.tblBrandTableAdapter.ClearBeforeFill = true;
+            this.tblCategoryBindingSource.DataMember = "tblCategory";
+            this.tblCategoryBindingSource.DataSource = this.inventoryDataSet1;
             // 
             // inventoryDataSet1
             // 
             this.inventoryDataSet1.DataSetName = "InventoryDataSet1";
             this.inventoryDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // tblCategoryBindingSource
+            // tblBrandTableAdapter
             // 
-            this.tblCategoryBindingSource.DataMember = "tblCategory";
-            this.tblCategoryBindingSource.DataSource = this.inventoryDataSet1;
+            this.tblBrandTableAdapter.ClearBeforeFill = true;
             // 
             // tblCategoryTableAdapter
             // 
@@ -179,7 +179,7 @@
             // dgvItems
             // 
             this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvItems.Location = new System.Drawing.Point(37, 290);
+            this.dgvItems.Location = new System.Drawing.Point(37, 334);
             this.dgvItems.Name = "dgvItems";
             this.dgvItems.Size = new System.Drawing.Size(488, 150);
             this.dgvItems.TabIndex = 12;
@@ -188,7 +188,7 @@
             // 
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Dubai Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrice.Location = new System.Drawing.Point(31, 180);
+            this.lblPrice.Location = new System.Drawing.Point(31, 224);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(59, 32);
             this.lblPrice.TabIndex = 13;
@@ -196,10 +196,27 @@
             // 
             // txtPrice
             // 
-            this.txtPrice.Location = new System.Drawing.Point(194, 187);
+            this.txtPrice.Location = new System.Drawing.Point(194, 231);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(331, 20);
             this.txtPrice.TabIndex = 14;
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(194, 182);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(331, 20);
+            this.txtDescription.TabIndex = 15;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Dubai Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(31, 175);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(107, 32);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Description";
             // 
             // AddItem
             // 
@@ -207,6 +224,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.ClientSize = new System.Drawing.Size(569, 501);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.dgvItems);
@@ -223,10 +242,10 @@
             this.Name = "AddItem";
             this.Text = "Add Item";
             this.Load += new System.EventHandler(this.AddItem_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblBrandBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblCategoryBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -254,5 +273,7 @@
         private System.Windows.Forms.DataGridView dgvItems;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.Label label1;
     }
 }

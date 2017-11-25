@@ -44,11 +44,22 @@ namespace Inventory
                 MessageBox.Show("Please select any Category.");
                 return false;
             }
-            if (txtItem.Text == "")
+            if (String.IsNullOrEmpty(txtItem.Text))
             {
                 MessageBox.Show("Please enter any Item Name.");
                 return false;
             }
+            if (String.IsNullOrEmpty(txtDescription.Text))
+            {
+                MessageBox.Show("Please enter Item Description.");
+                return false;
+            }
+            if (String.IsNullOrEmpty(txtPrice.Text))
+            {
+                MessageBox.Show("Please enter Item's Price.");
+                return false;
+            }
+
             return true;
         }
 
@@ -63,6 +74,7 @@ namespace Inventory
                 cmd.Parameters.AddWithValue("@brandName", ddlBrandName.SelectedValue);
                 cmd.Parameters.AddWithValue("@categoryName", ddlCategoryName.SelectedValue);
                 cmd.Parameters.AddWithValue("@item", txtItem.Text);
+                cmd.Parameters.AddWithValue("@desc", txtDescription.Text);
                 cmd.Parameters.AddWithValue("@cost", Convert.ToDecimal(txtPrice.Text));
                 con.Open();
 
