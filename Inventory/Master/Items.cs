@@ -59,7 +59,6 @@ namespace Inventory
                 MessageBox.Show("Please enter Item's Price.");
                 return false;
             }
-
             return true;
         }
 

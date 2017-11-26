@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSearch = new System.Windows.Forms.Button();
             this.ddlCategory = new System.Windows.Forms.ComboBox();
@@ -47,10 +48,25 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvInvoice = new System.Windows.Forms.DataGridView();
+            this.inventoryDataSet3 = new Inventory.InventoryDataSet3();
+            this.tblItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblItemTableAdapter = new Inventory.InventoryDataSet3TableAdapters.tblItemTableAdapter();
+            this.inventoryDataSet4 = new Inventory.InventoryDataSet4();
+            this.tblBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblBrandTableAdapter = new Inventory.InventoryDataSet4TableAdapters.tblBrandTableAdapter();
+            this.inventoryDataSet5 = new Inventory.InventoryDataSet5();
+            this.tblCategoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblCategoryTableAdapter = new Inventory.InventoryDataSet5TableAdapters.tblCategoryTableAdapter();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblItemBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblBrandBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblCategoryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -77,6 +93,8 @@
             // 
             // ddlCategory
             // 
+            this.ddlCategory.DataSource = this.tblCategoryBindingSource;
+            this.ddlCategory.DisplayMember = "CategoryName";
             this.ddlCategory.Font = new System.Drawing.Font("Dubai Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddlCategory.FormattingEnabled = true;
             this.ddlCategory.Location = new System.Drawing.Point(70, 64);
@@ -84,9 +102,12 @@
             this.ddlCategory.Size = new System.Drawing.Size(219, 35);
             this.ddlCategory.TabIndex = 1;
             this.ddlCategory.Text = "----Select Category----";
+            this.ddlCategory.ValueMember = "CategoryName";
             // 
             // ddlBrand
             // 
+            this.ddlBrand.DataSource = this.tblBrandBindingSource;
+            this.ddlBrand.DisplayMember = "BrandName";
             this.ddlBrand.Font = new System.Drawing.Font("Dubai Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddlBrand.FormattingEnabled = true;
             this.ddlBrand.Location = new System.Drawing.Point(70, 12);
@@ -94,9 +115,11 @@
             this.ddlBrand.Size = new System.Drawing.Size(219, 35);
             this.ddlBrand.TabIndex = 0;
             this.ddlBrand.Text = "----Select Brand----";
+            this.ddlBrand.ValueMember = "BrandName";
             // 
             // dgvItems
             // 
+            this.dgvItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvItems.Location = new System.Drawing.Point(13, 197);
             this.dgvItems.Name = "dgvItems";
@@ -244,6 +267,48 @@
             this.dgvInvoice.Size = new System.Drawing.Size(768, 248);
             this.dgvInvoice.TabIndex = 2;
             // 
+            // inventoryDataSet3
+            // 
+            this.inventoryDataSet3.DataSetName = "InventoryDataSet3";
+            this.inventoryDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblItemBindingSource
+            // 
+            this.tblItemBindingSource.DataMember = "tblItem";
+            this.tblItemBindingSource.DataSource = this.inventoryDataSet3;
+            // 
+            // tblItemTableAdapter
+            // 
+            this.tblItemTableAdapter.ClearBeforeFill = true;
+            // 
+            // inventoryDataSet4
+            // 
+            this.inventoryDataSet4.DataSetName = "InventoryDataSet4";
+            this.inventoryDataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblBrandBindingSource
+            // 
+            this.tblBrandBindingSource.DataMember = "tblBrand";
+            this.tblBrandBindingSource.DataSource = this.inventoryDataSet4;
+            // 
+            // tblBrandTableAdapter
+            // 
+            this.tblBrandTableAdapter.ClearBeforeFill = true;
+            // 
+            // inventoryDataSet5
+            // 
+            this.inventoryDataSet5.DataSetName = "InventoryDataSet5";
+            this.inventoryDataSet5.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblCategoryBindingSource
+            // 
+            this.tblCategoryBindingSource.DataMember = "tblCategory";
+            this.tblCategoryBindingSource.DataSource = this.inventoryDataSet5;
+            // 
+            // tblCategoryTableAdapter
+            // 
+            this.tblCategoryTableAdapter.ClearBeforeFill = true;
+            // 
             // InvoiceGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -256,11 +321,18 @@
             this.Controls.Add(this.panel1);
             this.Name = "InvoiceGenerator";
             this.Text = "InvoiceGenerator";
+            this.Load += new System.EventHandler(this.InvoiceGenerator_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblItemBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblBrandBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblCategoryBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -286,5 +358,14 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox ddlCustomer;
+        private InventoryDataSet3 inventoryDataSet3;
+        private System.Windows.Forms.BindingSource tblItemBindingSource;
+        private InventoryDataSet3TableAdapters.tblItemTableAdapter tblItemTableAdapter;
+        private InventoryDataSet4 inventoryDataSet4;
+        private System.Windows.Forms.BindingSource tblBrandBindingSource;
+        private InventoryDataSet4TableAdapters.tblBrandTableAdapter tblBrandTableAdapter;
+        private InventoryDataSet5 inventoryDataSet5;
+        private System.Windows.Forms.BindingSource tblCategoryBindingSource;
+        private InventoryDataSet5TableAdapters.tblCategoryTableAdapter tblCategoryTableAdapter;
     }
 }

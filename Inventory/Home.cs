@@ -68,5 +68,11 @@ namespace Inventory
             Tax tx = new Tax();
             tx.ShowDialog();
         }
+
+        private void generateInvoiceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvoiceGenerator ig = new InvoiceGenerator();
+            ig.ShowDialog();
+        }
     }
 }

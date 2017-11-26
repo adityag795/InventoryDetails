@@ -52,6 +52,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>InventoryDataSet2.xsd</DependentUpon>
     </Compile>
+    <Compile Include="InventoryDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InventoryDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InventoryDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryDataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InventoryDataSet5.xsd</DependentUpon>
+    </Compile>
     <Compile Include="InvoiceGenerator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -241,6 +256,39 @@
     </None>
     <None Include="InventoryDataSet2.xss">
       <DependentUpon>InventoryDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="InventoryDataSet3.xsc">
+      <DependentUpon>InventoryDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="InventoryDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InventoryDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="InventoryDataSet3.xss">
+      <DependentUpon>InventoryDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="InventoryDataSet4.xsc">
+      <DependentUpon>InventoryDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="InventoryDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InventoryDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="InventoryDataSet4.xss">
+      <DependentUpon>InventoryDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="InventoryDataSet5.xsc">
+      <DependentUpon>InventoryDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="InventoryDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InventoryDataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="InventoryDataSet5.xss">
+      <DependentUpon>InventoryDataSet5.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

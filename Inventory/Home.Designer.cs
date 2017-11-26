@@ -47,6 +47,7 @@
             this.catalogueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.orderDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generateInvoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,7 +58,8 @@
             this.ordersToolStripMenuItem,
             this.paymentToolStripMenuItem,
             this.detailsToolStripMenuItem,
-            this.exitToolStripMenuItem});
+            this.exitToolStripMenuItem,
+            this.generateInvoiceToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(742, 33);
@@ -196,6 +198,14 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // generateInvoiceToolStripMenuItem
+            // 
+            this.generateInvoiceToolStripMenuItem.Font = new System.Drawing.Font("Dubai Medium", 11F);
+            this.generateInvoiceToolStripMenuItem.Name = "generateInvoiceToolStripMenuItem";
+            this.generateInvoiceToolStripMenuItem.Size = new System.Drawing.Size(128, 29);
+            this.generateInvoiceToolStripMenuItem.Text = "Generate Invoice";
+            this.generateInvoiceToolStripMenuItem.Click += new System.EventHandler(this.generateInvoiceToolStripMenuItem_Click);
+            // 
             // HomeMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -237,6 +247,7 @@
         private System.Windows.Forms.ToolStripMenuItem wareHouseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salesPersonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem taxToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem generateInvoiceToolStripMenuItem;
     }
 }
 
