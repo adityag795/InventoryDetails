@@ -58,7 +58,29 @@ namespace Inventory
         private void dgvCustomer_Click(object sender, EventArgs e)
         {
             //MessageBox.Show(Convert.ToString(dgvCustomer.SelectedRows[0].Index));
+
+            //MessageBox.Show(Convert.ToString(dgvCustomer.SelectedRows[0].ToString()));
+            Int32 selectedRowCount = dgvCustomer.Rows.GetRowCount(DataGridViewElementStates.Selected);
+
+            if (selectedRowCount > 0)
+            {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+                for (int i = 0; i < selectedRowCount; i++)
+                {
+                    sb.Append("Row: ");
+                    sb.Append(dgvCustomer.SelectedRows[i].Index.ToString());
+                    sb.Append(Environment.NewLine);
+                }
+
+                sb.Append("Total: " + selectedRowCount.ToString());
+                MessageBox.Show(sb.ToString(), "Selected Rows");
+            }
         }
-               
+
+        private void selectedRowsButton_Click(object sender, System.EventArgs e)
+        {
+            
+        }
     }
 }

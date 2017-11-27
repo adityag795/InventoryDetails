@@ -61,16 +61,17 @@
             this.dgvCustomer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCustomer.GridColor = System.Drawing.SystemColors.Highlight;
-            this.dgvCustomer.Location = new System.Drawing.Point(33, 317);
+            this.dgvCustomer.Location = new System.Drawing.Point(33, 296);
             this.dgvCustomer.Name = "dgvCustomer";
-            this.dgvCustomer.Size = new System.Drawing.Size(625, 174);
+            this.dgvCustomer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCustomer.Size = new System.Drawing.Size(625, 195);
             this.dgvCustomer.TabIndex = 24;
             this.dgvCustomer.Click += new System.EventHandler(this.dgvCustomer_Click);
             // 
             // btnView
             // 
             this.btnView.Font = new System.Drawing.Font("Dubai Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnView.Location = new System.Drawing.Point(413, 262);
+            this.btnView.Location = new System.Drawing.Point(435, 244);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 34);
             this.btnView.TabIndex = 23;
@@ -81,7 +82,7 @@
             // btnAddCustomer
             // 
             this.btnAddCustomer.Font = new System.Drawing.Font("Dubai Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddCustomer.Location = new System.Drawing.Point(163, 262);
+            this.btnAddCustomer.Location = new System.Drawing.Point(163, 244);
             this.btnAddCustomer.Name = "btnAddCustomer";
             this.btnAddCustomer.Size = new System.Drawing.Size(136, 34);
             this.btnAddCustomer.TabIndex = 22;
@@ -110,7 +111,7 @@
             // 
             this.lblAddCustomer.AutoSize = true;
             this.lblAddCustomer.Font = new System.Drawing.Font("Dubai Medium", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddCustomer.Location = new System.Drawing.Point(126, 9);
+            this.lblAddCustomer.Location = new System.Drawing.Point(264, 9);
             this.lblAddCustomer.Name = "lblAddCustomer";
             this.lblAddCustomer.Size = new System.Drawing.Size(173, 40);
             this.lblAddCustomer.TabIndex = 19;
