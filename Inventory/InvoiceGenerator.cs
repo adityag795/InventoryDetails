@@ -102,6 +102,12 @@ namespace Inventory
 
         private void InvoiceGenerator_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'inventoryDataSet8.tblWarehouse' table. You can move, or remove it, as needed.
+            this.tblWarehouseTableAdapter.Fill(this.inventoryDataSet8.tblWarehouse);
+            // TODO: This line of code loads data into the 'inventoryDataSet7.tblSalesPerson' table. You can move, or remove it, as needed.
+            this.tblSalesPersonTableAdapter.Fill(this.inventoryDataSet7.tblSalesPerson);
+            // TODO: This line of code loads data into the 'inventoryDataSet6.tblCustomer' table. You can move, or remove it, as needed.
+            this.tblCustomerTableAdapter.Fill(this.inventoryDataSet6.tblCustomer);
             // TODO: This line of code loads data into the 'inventoryDataSet5.tblCategory' table. You can move, or remove it, as needed.
             this.tblCategoryTableAdapter.Fill(this.inventoryDataSet5.tblCategory);
             // TODO: This line of code loads data into the 'inventoryDataSet4.tblBrand' table. You can move, or remove it, as needed.

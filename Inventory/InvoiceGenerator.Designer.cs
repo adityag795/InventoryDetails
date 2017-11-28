@@ -42,7 +42,6 @@
             this.lblCustomer = new System.Windows.Forms.Label();
             this.btnFindCustomer = new System.Windows.Forms.Button();
             this.btnFindInvoice = new System.Windows.Forms.Button();
-            this.txtWarehouse = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtMobileNo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -61,6 +60,22 @@
             this.btnInvoice = new System.Windows.Forms.Button();
             this.lblGrandTotal = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.SerialNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.inventoryDataSet6 = new Inventory.InventoryDataSet6();
+            this.tblCustomerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblCustomerTableAdapter = new Inventory.InventoryDataSet6TableAdapters.tblCustomerTableAdapter();
+            this.inventoryDataSet7 = new Inventory.InventoryDataSet7();
+            this.tblSalesPersonBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblSalesPersonTableAdapter = new Inventory.InventoryDataSet7TableAdapters.tblSalesPersonTableAdapter();
+            this.ddlWarehouse = new System.Windows.Forms.ComboBox();
+            this.inventoryDataSet8 = new Inventory.InventoryDataSet8();
+            this.tblWarehouseBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblWarehouseTableAdapter = new Inventory.InventoryDataSet8TableAdapters.tblWarehouseTableAdapter();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblCategoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet5)).BeginInit();
@@ -71,6 +86,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblItemBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblCustomerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblSalesPersonBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblWarehouseBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -152,10 +173,10 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.panel2.Controls.Add(this.ddlWarehouse);
             this.panel2.Controls.Add(this.lblCustomer);
             this.panel2.Controls.Add(this.btnFindCustomer);
             this.panel2.Controls.Add(this.btnFindInvoice);
-            this.panel2.Controls.Add(this.txtWarehouse);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.txtMobileNo);
             this.panel2.Controls.Add(this.label3);
@@ -195,18 +216,10 @@
             this.btnFindInvoice.Font = new System.Drawing.Font("Dubai Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFindInvoice.Location = new System.Drawing.Point(413, 12);
             this.btnFindInvoice.Name = "btnFindInvoice";
-            this.btnFindInvoice.Size = new System.Drawing.Size(141, 32);
+            this.btnFindInvoice.Size = new System.Drawing.Size(169, 32);
             this.btnFindInvoice.TabIndex = 10;
             this.btnFindInvoice.Text = "Find Invoice";
             this.btnFindInvoice.UseVisualStyleBackColor = true;
-            // 
-            // txtWarehouse
-            // 
-            this.txtWarehouse.Font = new System.Drawing.Font("Dubai Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWarehouse.Location = new System.Drawing.Point(413, 119);
-            this.txtWarehouse.Name = "txtWarehouse";
-            this.txtWarehouse.Size = new System.Drawing.Size(169, 28);
-            this.txtWarehouse.TabIndex = 9;
             // 
             // label4
             // 
@@ -238,12 +251,15 @@
             // 
             // ddlSalesperson
             // 
+            this.ddlSalesperson.DataSource = this.tblSalesPersonBindingSource;
+            this.ddlSalesperson.DisplayMember = "SalesPersonName";
             this.ddlSalesperson.Font = new System.Drawing.Font("Dubai Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddlSalesperson.FormattingEnabled = true;
             this.ddlSalesperson.Location = new System.Drawing.Point(118, 59);
             this.ddlSalesperson.Name = "ddlSalesperson";
             this.ddlSalesperson.Size = new System.Drawing.Size(183, 29);
             this.ddlSalesperson.TabIndex = 5;
+            this.ddlSalesperson.ValueMember = "SalesPersonName";
             // 
             // label2
             // 
@@ -267,12 +283,15 @@
             // 
             // ddlCustomer
             // 
+            this.ddlCustomer.DataSource = this.tblCustomerBindingSource;
+            this.ddlCustomer.DisplayMember = "CustomerName";
             this.ddlCustomer.Font = new System.Drawing.Font("Dubai Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddlCustomer.FormattingEnabled = true;
             this.ddlCustomer.Location = new System.Drawing.Point(413, 62);
             this.ddlCustomer.Name = "ddlCustomer";
             this.ddlCustomer.Size = new System.Drawing.Size(169, 29);
             this.ddlCustomer.TabIndex = 2;
+            this.ddlCustomer.ValueMember = "CustomerName";
             // 
             // txtInvoiceNo
             // 
@@ -294,8 +313,16 @@
             // 
             // dgvInvoice
             // 
+            this.dgvInvoice.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvInvoice.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dgvInvoice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvInvoice.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.SerialNo,
+            this.ItemCode,
+            this.Description,
+            this.UnitPrice,
+            this.Quantity,
+            this.Total});
             this.dgvInvoice.Location = new System.Drawing.Point(414, 197);
             this.dgvInvoice.Name = "dgvInvoice";
             this.dgvInvoice.Size = new System.Drawing.Size(768, 248);
@@ -351,6 +378,90 @@
             this.textBox1.Size = new System.Drawing.Size(169, 39);
             this.textBox1.TabIndex = 5;
             // 
+            // SerialNo
+            // 
+            this.SerialNo.HeaderText = "SerialNo";
+            this.SerialNo.Name = "SerialNo";
+            // 
+            // ItemCode
+            // 
+            this.ItemCode.HeaderText = "Item Code";
+            this.ItemCode.Name = "ItemCode";
+            // 
+            // Description
+            // 
+            this.Description.HeaderText = "Description";
+            this.Description.Name = "Description";
+            // 
+            // UnitPrice
+            // 
+            this.UnitPrice.HeaderText = "Unit Price";
+            this.UnitPrice.Name = "UnitPrice";
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Name = "Quantity";
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            // 
+            // inventoryDataSet6
+            // 
+            this.inventoryDataSet6.DataSetName = "InventoryDataSet6";
+            this.inventoryDataSet6.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblCustomerBindingSource
+            // 
+            this.tblCustomerBindingSource.DataMember = "tblCustomer";
+            this.tblCustomerBindingSource.DataSource = this.inventoryDataSet6;
+            // 
+            // tblCustomerTableAdapter
+            // 
+            this.tblCustomerTableAdapter.ClearBeforeFill = true;
+            // 
+            // inventoryDataSet7
+            // 
+            this.inventoryDataSet7.DataSetName = "InventoryDataSet7";
+            this.inventoryDataSet7.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblSalesPersonBindingSource
+            // 
+            this.tblSalesPersonBindingSource.DataMember = "tblSalesPerson";
+            this.tblSalesPersonBindingSource.DataSource = this.inventoryDataSet7;
+            // 
+            // tblSalesPersonTableAdapter
+            // 
+            this.tblSalesPersonTableAdapter.ClearBeforeFill = true;
+            // 
+            // ddlWarehouse
+            // 
+            this.ddlWarehouse.DataSource = this.tblWarehouseBindingSource;
+            this.ddlWarehouse.DisplayMember = "WarehouseName";
+            this.ddlWarehouse.Font = new System.Drawing.Font("Dubai Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ddlWarehouse.FormattingEnabled = true;
+            this.ddlWarehouse.Location = new System.Drawing.Point(414, 118);
+            this.ddlWarehouse.Name = "ddlWarehouse";
+            this.ddlWarehouse.Size = new System.Drawing.Size(168, 29);
+            this.ddlWarehouse.TabIndex = 13;
+            this.ddlWarehouse.ValueMember = "WarehouseName";
+            // 
+            // inventoryDataSet8
+            // 
+            this.inventoryDataSet8.DataSetName = "InventoryDataSet8";
+            this.inventoryDataSet8.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblWarehouseBindingSource
+            // 
+            this.tblWarehouseBindingSource.DataMember = "tblWarehouse";
+            this.tblWarehouseBindingSource.DataSource = this.inventoryDataSet8;
+            // 
+            // tblWarehouseTableAdapter
+            // 
+            this.tblWarehouseTableAdapter.ClearBeforeFill = true;
+            // 
             // InvoiceGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -378,6 +489,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblItemBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblCustomerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblSalesPersonBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblWarehouseBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -396,7 +513,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnFindCustomer;
         private System.Windows.Forms.Button btnFindInvoice;
-        private System.Windows.Forms.TextBox txtWarehouse;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtMobileNo;
         private System.Windows.Forms.Label label3;
@@ -417,5 +533,21 @@
         private System.Windows.Forms.Button btnInvoice;
         private System.Windows.Forms.Label lblGrandTotal;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SerialNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnitPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private InventoryDataSet6 inventoryDataSet6;
+        private System.Windows.Forms.BindingSource tblCustomerBindingSource;
+        private InventoryDataSet6TableAdapters.tblCustomerTableAdapter tblCustomerTableAdapter;
+        private InventoryDataSet7 inventoryDataSet7;
+        private System.Windows.Forms.BindingSource tblSalesPersonBindingSource;
+        private InventoryDataSet7TableAdapters.tblSalesPersonTableAdapter tblSalesPersonTableAdapter;
+        private System.Windows.Forms.ComboBox ddlWarehouse;
+        private InventoryDataSet8 inventoryDataSet8;
+        private System.Windows.Forms.BindingSource tblWarehouseBindingSource;
+        private InventoryDataSet8TableAdapters.tblWarehouseTableAdapter tblWarehouseTableAdapter;
     }
 }

@@ -60,7 +60,7 @@ namespace Inventory
             //MessageBox.Show(Convert.ToString(dgvCustomer.SelectedRows[0].Index));
 
             //MessageBox.Show(Convert.ToString(dgvCustomer.SelectedRows[0].ToString()));
-            Int32 selectedRowCount = dgvCustomer.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            int selectedRowCount = dgvCustomer.Rows.GetRowCount(DataGridViewElementStates.Selected);
 
             if (selectedRowCount > 0)
             {
