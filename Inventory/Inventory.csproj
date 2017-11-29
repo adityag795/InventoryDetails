@@ -82,6 +82,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>InventoryDataSet8.xsd</DependentUpon>
     </Compile>
+    <Compile Include="InventoryDataSet9.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InventoryDataSet9.xsd</DependentUpon>
+    </Compile>
     <Compile Include="InvoiceGenerator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -337,6 +342,17 @@
     </None>
     <None Include="InventoryDataSet8.xss">
       <DependentUpon>InventoryDataSet8.xsd</DependentUpon>
+    </None>
+    <None Include="InventoryDataSet9.xsc">
+      <DependentUpon>InventoryDataSet9.xsd</DependentUpon>
+    </None>
+    <None Include="InventoryDataSet9.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InventoryDataSet9.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="InventoryDataSet9.xss">
+      <DependentUpon>InventoryDataSet9.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
