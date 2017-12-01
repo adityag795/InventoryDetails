@@ -174,6 +174,7 @@
             this.dgvItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvItems.Size = new System.Drawing.Size(382, 248);
             this.dgvItems.TabIndex = 0;
+            this.dgvItems.Click += new System.EventHandler(this.dgvItems_Click);
             // 
             // panel2
             // 
@@ -200,11 +201,11 @@
             // 
             this.ddlWarehouse.DataSource = this.tblWarehouseBindingSource;
             this.ddlWarehouse.DisplayMember = "WarehouseName";
-            this.ddlWarehouse.Font = new System.Drawing.Font("Dubai Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ddlWarehouse.Font = new System.Drawing.Font("Dubai Medium", 12F);
             this.ddlWarehouse.FormattingEnabled = true;
-            this.ddlWarehouse.Location = new System.Drawing.Point(414, 118);
+            this.ddlWarehouse.Location = new System.Drawing.Point(414, 106);
             this.ddlWarehouse.Name = "ddlWarehouse";
-            this.ddlWarehouse.Size = new System.Drawing.Size(168, 29);
+            this.ddlWarehouse.Size = new System.Drawing.Size(168, 35);
             this.ddlWarehouse.TabIndex = 13;
             this.ddlWarehouse.ValueMember = "WarehouseName";
             // 
@@ -237,6 +238,7 @@
             this.btnFindCustomer.TabIndex = 11;
             this.btnFindCustomer.Text = "Find Customer";
             this.btnFindCustomer.UseVisualStyleBackColor = true;
+            this.btnFindCustomer.Click += new System.EventHandler(this.btnFindCustomer_Click);
             // 
             // btnFindInvoice
             // 
@@ -252,7 +254,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Dubai Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(319, 118);
+            this.label4.Location = new System.Drawing.Point(319, 109);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(88, 27);
             this.label4.TabIndex = 8;
@@ -260,17 +262,17 @@
             // 
             // txtMobileNo
             // 
-            this.txtMobileNo.Font = new System.Drawing.Font("Dubai Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMobileNo.Location = new System.Drawing.Point(118, 118);
+            this.txtMobileNo.Font = new System.Drawing.Font("Dubai Medium", 12F);
+            this.txtMobileNo.Location = new System.Drawing.Point(118, 103);
             this.txtMobileNo.Name = "txtMobileNo";
-            this.txtMobileNo.Size = new System.Drawing.Size(183, 28);
+            this.txtMobileNo.Size = new System.Drawing.Size(183, 35);
             this.txtMobileNo.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Dubai Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(17, 118);
+            this.label3.Location = new System.Drawing.Point(17, 106);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(86, 27);
             this.label3.TabIndex = 6;
@@ -280,11 +282,11 @@
             // 
             this.ddlSalesperson.DataSource = this.tblSalesPersonBindingSource;
             this.ddlSalesperson.DisplayMember = "SalesPersonName";
-            this.ddlSalesperson.Font = new System.Drawing.Font("Dubai Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ddlSalesperson.Font = new System.Drawing.Font("Dubai Medium", 12F);
             this.ddlSalesperson.FormattingEnabled = true;
-            this.ddlSalesperson.Location = new System.Drawing.Point(118, 59);
+            this.ddlSalesperson.Location = new System.Drawing.Point(118, 55);
             this.ddlSalesperson.Name = "ddlSalesperson";
-            this.ddlSalesperson.Size = new System.Drawing.Size(183, 29);
+            this.ddlSalesperson.Size = new System.Drawing.Size(183, 35);
             this.ddlSalesperson.TabIndex = 5;
             this.ddlSalesperson.ValueMember = "SalesPersonName";
             // 
@@ -322,13 +324,14 @@
             // 
             this.ddlCustomer.DataSource = this.tblCustomerBindingSource;
             this.ddlCustomer.DisplayMember = "CustomerName";
-            this.ddlCustomer.Font = new System.Drawing.Font("Dubai Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ddlCustomer.Font = new System.Drawing.Font("Dubai Medium", 12F);
             this.ddlCustomer.FormattingEnabled = true;
-            this.ddlCustomer.Location = new System.Drawing.Point(413, 62);
+            this.ddlCustomer.Location = new System.Drawing.Point(414, 55);
             this.ddlCustomer.Name = "ddlCustomer";
-            this.ddlCustomer.Size = new System.Drawing.Size(169, 29);
+            this.ddlCustomer.Size = new System.Drawing.Size(169, 35);
             this.ddlCustomer.TabIndex = 2;
             this.ddlCustomer.ValueMember = "CustomerName";
+            this.ddlCustomer.SelectedIndexChanged += new System.EventHandler(this.ddlCustomer_SelectedIndexChanged);
             // 
             // tblCustomerBindingSource
             // 
@@ -342,10 +345,10 @@
             // 
             // txtInvoiceNo
             // 
-            this.txtInvoiceNo.Font = new System.Drawing.Font("Dubai Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInvoiceNo.Font = new System.Drawing.Font("Dubai Medium", 12F);
             this.txtInvoiceNo.Location = new System.Drawing.Point(118, 12);
             this.txtInvoiceNo.Name = "txtInvoiceNo";
-            this.txtInvoiceNo.Size = new System.Drawing.Size(183, 28);
+            this.txtInvoiceNo.Size = new System.Drawing.Size(183, 35);
             this.txtInvoiceNo.TabIndex = 1;
             // 
             // label1
@@ -374,7 +377,6 @@
             this.dgvInvoice.Name = "dgvInvoice";
             this.dgvInvoice.Size = new System.Drawing.Size(768, 248);
             this.dgvInvoice.TabIndex = 2;
-            this.dgvInvoice.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvInvoice_CellClick);
             // 
             // SerialNo
             // 

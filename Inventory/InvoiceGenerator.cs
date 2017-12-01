@@ -16,7 +16,7 @@ namespace Inventory
         SqlCommand cmd;
         SqlConnection con;
         String Cstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-
+        int x = 1;
         public InvoiceGenerator()
         {
             InitializeComponent();
@@ -118,9 +118,12 @@ namespace Inventory
             this.tblItemTableAdapter.Fill(this.inventoryDataSet3.tblItem);
             ddlBrand.Text = "----Select Brand----";
             ddlCategory.Text = "----Select Category----";
+            ddlCustomer.Text = "----Select Customer----";
+            ddlSalesperson.Text = "----Select Salesperson----";
+            ddlWarehouse.Text = "----Select Warehouse----";
         }
 
-        private void dgvInvoice_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvItems_Click(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("SerialNo");
@@ -138,9 +141,11 @@ namespace Inventory
             row["Quantity"] = "1";
             row["Total"] = (Convert.ToDouble(row["UnitPrice"]) * Convert.ToDouble(row["Quantity"])).ToString();
             dt.Rows.Add(row);
-            foreach(DataRow Drow in dt.Rows)
+                        
+            foreach (DataRow Drow in dt.Rows)
             {
                 int num = dgvInvoice.Rows.Add();
+                dgvInvoice.Rows[num].Cells[0].Value = (x++).ToString();
                 dgvInvoice.Rows[num].Cells[1].Value = Drow["ItemCode"].ToString();
                 dgvInvoice.Rows[num].Cells[2].Value = Drow["Description"].ToString();
                 dgvInvoice.Rows[num].Cells[3].Value = Drow["UnitPrice"].ToString();
@@ -148,5 +153,29 @@ namespace Inventory
                 dgvInvoice.Rows[num].Cells[5].Value = Drow["Total"].ToString();
             }
         }
+
+        private void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string query = "SELECT MobileNo FROM tblCustomer WHERE CustomerName = '" + (string)ddlCustomer.SelectedValue + "'";
+            using (con = new SqlConnection(Cstring))
+            {
+                cmd = new SqlCommand(query, con);
+                con.Open();
+                //string xyz = Convert.ToString(cmd.ExecuteReader());
+                txtMobileNo.Text = Convert.ToString(cmd.ExecuteScalar());
+            }
+        }
+
+        private void btnFindCustomer_Click(object sender, EventArgs e)
+        {
+
+        }
+        
+        //private void dgvInvoice_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    dgvInvoice.Rows[e.RowIndex].Cells[CC.5].Value = (Convert.ToDouble(dgvInvoice.Rows[e.RowIndex].Cells[CC.3].Value) * Convert.ToDouble(dgvInvoice.Rows[e.RowIndex].Cells[CC.4].Value)).ToString();
+        //}
+
+
     }
 }
