@@ -168,7 +168,8 @@ namespace Inventory
 
         private void btnFindCustomer_Click(object sender, EventArgs e)
         {
-
+            FindCustomer fc = new FindCustomer();
+            fc.ShowDialog();
         }
         
         //private void dgvInvoice_CellEndEdit(object sender, DataGridViewCellEventArgs e)

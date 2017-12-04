@@ -232,7 +232,7 @@
             // btnFindCustomer
             // 
             this.btnFindCustomer.Font = new System.Drawing.Font("Dubai Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFindCustomer.Location = new System.Drawing.Point(607, 62);
+            this.btnFindCustomer.Location = new System.Drawing.Point(607, 55);
             this.btnFindCustomer.Name = "btnFindCustomer";
             this.btnFindCustomer.Size = new System.Drawing.Size(141, 32);
             this.btnFindCustomer.TabIndex = 11;
