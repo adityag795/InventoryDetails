@@ -171,6 +171,21 @@ namespace Inventory
             FindCustomer fc = new FindCustomer();
             fc.ShowDialog();
         }
+
+        private void btnInvoice_Click(object sender, EventArgs e)
+        {
+            using (con = new SqlConnection(Cstring))
+            {
+                string query = "INSERT INTO HInvoice (InvoiceNo, Salesperson, CustomerName, MobileNo, Warehouse, Time) VALUES ('" 
+                    + txtInvoiceNo.Text + "','" + ddlSalesperson.SelectedValue + "','" + ddlCustomer.SelectedValue 
+                    + "'," + Convert.ToDouble(txtMobileNo.Text) + ",'" + ddlWarehouse.Text + "',GETDATE())";
+
+                cmd = new SqlCommand(query, con);
+                con.Open();
+                int headerRow = cmd.ExecuteNonQuery();
+                MessageBox.Show(headerRow + " row added.");
+            }
+        }
         
         //private void dgvInvoice_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         //{

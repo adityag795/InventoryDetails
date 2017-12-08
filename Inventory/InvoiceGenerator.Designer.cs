@@ -350,6 +350,7 @@
             this.txtInvoiceNo.Name = "txtInvoiceNo";
             this.txtInvoiceNo.Size = new System.Drawing.Size(183, 35);
             this.txtInvoiceNo.TabIndex = 1;
+            this.txtInvoiceNo.Text = "\t";
             // 
             // label1
             // 
@@ -439,6 +440,7 @@
             this.btnInvoice.TabIndex = 3;
             this.btnInvoice.Text = "Invoice";
             this.btnInvoice.UseVisualStyleBackColor = true;
+            this.btnInvoice.Click += new System.EventHandler(this.btnInvoice_Click);
             // 
             // lblGrandTotal
             // 
