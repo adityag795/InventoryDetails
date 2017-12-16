@@ -53,10 +53,21 @@
     <Compile Include="FindCustomer.Designer.cs">
       <DependentUpon>FindCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="FindInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FindInvoice.Designer.cs">
+      <DependentUpon>FindInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="InventoryDataSet10.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InventoryDataSet10.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryDataSet11.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InventoryDataSet11.xsd</DependentUpon>
     </Compile>
     <Compile Include="InventoryDataSet2.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -188,10 +199,10 @@
     <Compile Include="Master\Warehouse.Designer.cs">
       <DependentUpon>Warehouse.cs</DependentUpon>
     </Compile>
-    <Compile Include="SalesPerson.cs">
+    <Compile Include="Master\SalesPerson.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SalesPerson.Designer.cs">
+    <Compile Include="Master\SalesPerson.Designer.cs">
       <DependentUpon>SalesPerson.cs</DependentUpon>
     </Compile>
     <Compile Include="Master\Tax.cs">
@@ -202,6 +213,9 @@
     </Compile>
     <EmbeddedResource Include="FindCustomer.resx">
       <DependentUpon>FindCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FindInvoice.resx">
+      <DependentUpon>FindInvoice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InvoiceGenerator.resx">
       <DependentUpon>InvoiceGenerator.cs</DependentUpon>
@@ -251,7 +265,7 @@
     <EmbeddedResource Include="Master\Warehouse.resx">
       <DependentUpon>Warehouse.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SalesPerson.resx">
+    <EmbeddedResource Include="Master\SalesPerson.resx">
       <DependentUpon>SalesPerson.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\Tax.resx">
@@ -290,6 +304,17 @@
     </None>
     <None Include="InventoryDataSet10.xss">
       <DependentUpon>InventoryDataSet10.xsd</DependentUpon>
+    </None>
+    <None Include="InventoryDataSet11.xsc">
+      <DependentUpon>InventoryDataSet11.xsd</DependentUpon>
+    </None>
+    <None Include="InventoryDataSet11.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InventoryDataSet11.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="InventoryDataSet11.xss">
+      <DependentUpon>InventoryDataSet11.xsd</DependentUpon>
     </None>
     <None Include="InventoryDataSet2.xsc">
       <DependentUpon>InventoryDataSet2.xsd</DependentUpon>

@@ -50,11 +50,20 @@
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblWarehouse = new System.Windows.Forms.Label();
+            this.ddlWarehouse = new System.Windows.Forms.ComboBox();
+            this.inventoryDataSet11 = new Inventory.InventoryDataSet11();
+            this.tblWarehouseBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblWarehouseTableAdapter = new Inventory.InventoryDataSet11TableAdapters.tblWarehouseTableAdapter();
+            this.lblStock = new System.Windows.Forms.Label();
+            this.txtStock = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.tblBrandBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblCategoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblWarehouseBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblHeadingC
@@ -81,7 +90,7 @@
             // 
             this.lblCategoryName.AutoSize = true;
             this.lblCategoryName.Font = new System.Drawing.Font("Dubai Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategoryName.Location = new System.Drawing.Point(31, 99);
+            this.lblCategoryName.Location = new System.Drawing.Point(31, 84);
             this.lblCategoryName.Name = "lblCategoryName";
             this.lblCategoryName.Size = new System.Drawing.Size(137, 32);
             this.lblCategoryName.TabIndex = 4;
@@ -91,7 +100,7 @@
             // 
             this.lblItem.AutoSize = true;
             this.lblItem.Font = new System.Drawing.Font("Dubai Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblItem.Location = new System.Drawing.Point(31, 134);
+            this.lblItem.Location = new System.Drawing.Point(31, 124);
             this.lblItem.Name = "lblItem";
             this.lblItem.Size = new System.Drawing.Size(101, 32);
             this.lblItem.TabIndex = 5;
@@ -99,7 +108,7 @@
             // 
             // txtItem
             // 
-            this.txtItem.Location = new System.Drawing.Point(194, 141);
+            this.txtItem.Location = new System.Drawing.Point(194, 131);
             this.txtItem.Name = "txtItem";
             this.txtItem.Size = new System.Drawing.Size(331, 20);
             this.txtItem.TabIndex = 6;
@@ -107,7 +116,7 @@
             // btnAddInventory
             // 
             this.btnAddInventory.Font = new System.Drawing.Font("Dubai Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddInventory.Location = new System.Drawing.Point(77, 277);
+            this.btnAddInventory.Location = new System.Drawing.Point(77, 332);
             this.btnAddInventory.Name = "btnAddInventory";
             this.btnAddInventory.Size = new System.Drawing.Size(136, 34);
             this.btnAddInventory.TabIndex = 7;
@@ -118,7 +127,7 @@
             // btnView
             // 
             this.btnView.Font = new System.Drawing.Font("Dubai Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnView.Location = new System.Drawing.Point(396, 277);
+            this.btnView.Location = new System.Drawing.Point(396, 332);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 34);
             this.btnView.TabIndex = 8;
@@ -152,7 +161,7 @@
             this.ddlCategoryName.DataSource = this.tblCategoryBindingSource;
             this.ddlCategoryName.DisplayMember = "CategoryName";
             this.ddlCategoryName.FormattingEnabled = true;
-            this.ddlCategoryName.Location = new System.Drawing.Point(194, 99);
+            this.ddlCategoryName.Location = new System.Drawing.Point(194, 91);
             this.ddlCategoryName.Name = "ddlCategoryName";
             this.ddlCategoryName.Size = new System.Drawing.Size(331, 21);
             this.ddlCategoryName.TabIndex = 11;
@@ -179,7 +188,7 @@
             // dgvItems
             // 
             this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvItems.Location = new System.Drawing.Point(37, 334);
+            this.dgvItems.Location = new System.Drawing.Point(37, 382);
             this.dgvItems.Name = "dgvItems";
             this.dgvItems.Size = new System.Drawing.Size(488, 150);
             this.dgvItems.TabIndex = 12;
@@ -188,7 +197,7 @@
             // 
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Dubai Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrice.Location = new System.Drawing.Point(31, 224);
+            this.lblPrice.Location = new System.Drawing.Point(31, 288);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(59, 32);
             this.lblPrice.TabIndex = 13;
@@ -196,14 +205,14 @@
             // 
             // txtPrice
             // 
-            this.txtPrice.Location = new System.Drawing.Point(194, 231);
+            this.txtPrice.Location = new System.Drawing.Point(194, 295);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(331, 20);
             this.txtPrice.TabIndex = 14;
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(194, 182);
+            this.txtDescription.Location = new System.Drawing.Point(194, 171);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(331, 20);
             this.txtDescription.TabIndex = 15;
@@ -212,18 +221,74 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Dubai Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(31, 175);
+            this.label1.Location = new System.Drawing.Point(31, 164);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(107, 32);
             this.label1.TabIndex = 16;
             this.label1.Text = "Description";
+            // 
+            // lblWarehouse
+            // 
+            this.lblWarehouse.AutoSize = true;
+            this.lblWarehouse.Font = new System.Drawing.Font("Dubai Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWarehouse.Location = new System.Drawing.Point(31, 251);
+            this.lblWarehouse.Name = "lblWarehouse";
+            this.lblWarehouse.Size = new System.Drawing.Size(104, 32);
+            this.lblWarehouse.TabIndex = 17;
+            this.lblWarehouse.Text = "Warehouse";
+            // 
+            // ddlWarehouse
+            // 
+            this.ddlWarehouse.DataSource = this.tblWarehouseBindingSource;
+            this.ddlWarehouse.DisplayMember = "WarehouseName";
+            this.ddlWarehouse.FormattingEnabled = true;
+            this.ddlWarehouse.Location = new System.Drawing.Point(194, 258);
+            this.ddlWarehouse.Name = "ddlWarehouse";
+            this.ddlWarehouse.Size = new System.Drawing.Size(331, 21);
+            this.ddlWarehouse.TabIndex = 18;
+            this.ddlWarehouse.ValueMember = "WarehouseName";
+            // 
+            // inventoryDataSet11
+            // 
+            this.inventoryDataSet11.DataSetName = "InventoryDataSet11";
+            this.inventoryDataSet11.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblWarehouseBindingSource
+            // 
+            this.tblWarehouseBindingSource.DataMember = "tblWarehouse";
+            this.tblWarehouseBindingSource.DataSource = this.inventoryDataSet11;
+            // 
+            // tblWarehouseTableAdapter
+            // 
+            this.tblWarehouseTableAdapter.ClearBeforeFill = true;
+            // 
+            // lblStock
+            // 
+            this.lblStock.AutoSize = true;
+            this.lblStock.Font = new System.Drawing.Font("Dubai Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStock.Location = new System.Drawing.Point(31, 208);
+            this.lblStock.Name = "lblStock";
+            this.lblStock.Size = new System.Drawing.Size(60, 32);
+            this.lblStock.TabIndex = 19;
+            this.lblStock.Text = "Stock";
+            // 
+            // txtStock
+            // 
+            this.txtStock.Location = new System.Drawing.Point(194, 215);
+            this.txtStock.Name = "txtStock";
+            this.txtStock.Size = new System.Drawing.Size(331, 20);
+            this.txtStock.TabIndex = 20;
             // 
             // AddItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.ClientSize = new System.Drawing.Size(569, 501);
+            this.ClientSize = new System.Drawing.Size(565, 580);
+            this.Controls.Add(this.txtStock);
+            this.Controls.Add(this.lblStock);
+            this.Controls.Add(this.ddlWarehouse);
+            this.Controls.Add(this.lblWarehouse);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.txtPrice);
@@ -247,6 +312,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.tblCategoryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblWarehouseBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,5 +342,12 @@
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblWarehouse;
+        private System.Windows.Forms.ComboBox ddlWarehouse;
+        private InventoryDataSet11 inventoryDataSet11;
+        private System.Windows.Forms.BindingSource tblWarehouseBindingSource;
+        private InventoryDataSet11TableAdapters.tblWarehouseTableAdapter tblWarehouseTableAdapter;
+        private System.Windows.Forms.Label lblStock;
+        private System.Windows.Forms.TextBox txtStock;
     }
 }

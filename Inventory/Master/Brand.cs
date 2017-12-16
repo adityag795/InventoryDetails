@@ -34,6 +34,8 @@ namespace Inventory
                     con.Open();
                     int rowsAdded = cmd.ExecuteNonQuery();
                     MessageBox.Show(Convert.ToString(rowsAdded) + " row added.");
+                    txtBrand.Text = "";
+                    btnView_Click(sender, e);
                 }
             }
             else

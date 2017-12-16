@@ -13,14 +13,32 @@ namespace Inventory
 {
     public partial class InvoiceGenerator : Form
     {
+        public string mNo="";
+        public String dgIndex = "";
         SqlCommand cmd;
         SqlConnection con;
         String Cstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
         int x = 1;
+        double Grandtotal = 0;
         public InvoiceGenerator()
         {
             InitializeComponent();
         }
+
+        public int RandomNumber()
+        {
+            Random random = new Random();
+            return random.Next(1000, 9999);
+        }
+
+        //double randomNum()
+        //{
+        //    Random r = new Random();
+        //    int rInt = r.Next(0, 100); //for ints
+        //    int range = 100;
+        //    double rDouble = r.NextDouble() * range;
+        //    return rDouble;
+        //}
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -102,6 +120,10 @@ namespace Inventory
 
         private void InvoiceGenerator_Load(object sender, EventArgs e)
         {
+            InvoiceGenerator gh = new InvoiceGenerator();
+            gh.Dispose();
+            txtMobileNo.Text = dgIndex;
+            txtInvoiceNo.Text = "IF" + Convert.ToString(RandomNumber());
             // TODO: This line of code loads data into the 'inventoryDataSet9.tblItem' table. You can move, or remove it, as needed.
             this.tblItemTableAdapter1.Fill(this.inventoryDataSet9.tblItem);
             // TODO: This line of code loads data into the 'inventoryDataSet8.tblWarehouse' table. You can move, or remove it, as needed.
@@ -141,7 +163,7 @@ namespace Inventory
             row["Quantity"] = "1";
             row["Total"] = (Convert.ToDouble(row["UnitPrice"]) * Convert.ToDouble(row["Quantity"])).ToString();
             dt.Rows.Add(row);
-                        
+            
             foreach (DataRow Drow in dt.Rows)
             {
                 int num = dgvInvoice.Rows.Add();
@@ -151,6 +173,8 @@ namespace Inventory
                 dgvInvoice.Rows[num].Cells[3].Value = Drow["UnitPrice"].ToString();
                 dgvInvoice.Rows[num].Cells[4].Value = Drow["Quantity"].ToString();
                 dgvInvoice.Rows[num].Cells[5].Value = Drow["Total"].ToString();
+                Grandtotal += Convert.ToDouble(dgvInvoice.Rows[num].Cells[5].Value);
+                txtTotal.Text = Convert.ToString(Grandtotal);
             }
         }
 
@@ -184,7 +208,75 @@ namespace Inventory
                 con.Open();
                 int headerRow = cmd.ExecuteNonQuery();
                 MessageBox.Show(headerRow + " row added.");
+                con.Close();
+                con.Open();
+                int i;
+                for(i = 0; i < dgvInvoice.Rows.Count-1; i++)
+                {
+                    string StrQuery = @"INSERT INTO RInvoice (SerialNo,ItemCode,Description,UnitPrice,Quantity,Total,Time) VALUES ("
+                        + dgvInvoice.Rows[i].Cells["SerialNo"].Value + ", "
+                        + dgvInvoice.Rows[i].Cells["ItemCode"].Value + ", '"
+                        + dgvInvoice.Rows[i].Cells["Description"].Value + "', "
+                        + Convert.ToDouble(dgvInvoice.Rows[i].Cells["UnitPrice"].Value) + ", "
+                        + Convert.ToInt32(dgvInvoice.Rows[i].Cells["Quantity"].Value) + ", "
+                        + Convert.ToDouble(dgvInvoice.Rows[i].Cells["Total"].Value) + ", "
+                        + "GETDATE() );";
+
+                    SqlCommand cmd4 = new SqlCommand(StrQuery, con);
+                    //cmd4.CommandText = StrQuery;
+                    cmd4.ExecuteNonQuery();
+
+                    string getStock = "SELECT Stock FROM tblItem WHERE ItemId = " + dgvInvoice.Rows[i].Cells["ItemCode"].Value;
+                    SqlCommand cmd2 = new SqlCommand(getStock, con);
+                    int stock = Convert.ToInt32(cmd2.ExecuteScalar());
+                    stock -= Convert.ToInt32(dgvInvoice.Rows[i].Cells["Quantity"].Value);
+                    
+                    string update = "UPDATE tblItem SET Stock = " + stock + " WHERE ItemId = " + dgvInvoice.Rows[i].Cells["ItemCode"].Value;
+                    SqlCommand cmd3 = new SqlCommand(update, con);
+                    cmd3.ExecuteNonQuery();
+                }
             }
+        }
+
+        private void btnFindInvoice_Click(object sender, EventArgs e)
+        {
+            FindInvoice fi = new FindInvoice();
+            fi.ShowDialog();
+        }
+
+        private void btnNewCustomer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvInvoice_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // int a = Convert.ToInt32( dgvInvoice.Rows[1].Cells[4].Value);
+            // dgvInvoice r1 = SelectedRows.ce;
+            int selectedRowIndex = dgvInvoice.SelectedCells[0].RowIndex;
+            DataGridViewRow selectedRow = dgvInvoice.Rows[selectedRowIndex];
+            int qty = Convert.ToInt32(dgvInvoice.Rows[selectedRowIndex].Cells[4].Value);
+        }
+
+        private void dgvInvoice_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            int selectedRowIndex = dgvInvoice.SelectedCells[0].RowIndex;
+            int qty = Convert.ToInt32(dgvInvoice.Rows[selectedRowIndex].Cells[4].Value);
+            double ex = Convert.ToDouble(dgvInvoice.Rows[selectedRowIndex].Cells[5].Value);
+            dgvInvoice.Rows[selectedRowIndex].Cells[5].Value = Convert.ToDouble(dgvInvoice.Rows[selectedRowIndex].Cells[3].Value) * Convert.ToDouble(qty);
+            Grandtotal = Grandtotal - ex + Convert.ToDouble(dgvInvoice.Rows[selectedRowIndex].Cells[5].Value);
+            txtTotal.Text = Convert.ToString(Grandtotal);
+        }
+
+        // Update Grand Total when rows are deleted
+        private void dgvInvoice_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            /*
+            int selectedRowIndex = dgvInvoice.SelectedCells[0].RowIndex;
+            double ex = Convert.ToDouble(dgvInvoice.Rows[selectedRowIndex].Cells[5].Value);
+            Grandtotal = Grandtotal - ex;
+            txtTotal.Text = Convert.ToString(Grandtotal);
+            */
         }
         
         //private void dgvInvoice_CellEndEdit(object sender, DataGridViewCellEventArgs e)

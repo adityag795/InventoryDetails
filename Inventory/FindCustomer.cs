@@ -11,8 +11,10 @@ using System.Configuration;
 
 namespace Inventory
 {
+ 
     public partial class FindCustomer : Form
     {
+        public static string mobileNo = "";
         SqlCommand cmd;
         SqlConnection con;
         String Cstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
@@ -62,10 +64,31 @@ namespace Inventory
             }
         }
 
+        int selectedRowIndex;
+        InvoiceGenerator g1;
+
         private void dgvCustomer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            g1 = new InvoiceGenerator();
+            selectedRowIndex = dgvCustomer.SelectedCells[0].RowIndex;
+            DataGridViewRow selectedRow = dgvCustomer.Rows[selectedRowIndex];
+           // int a1 = Convert.ToInt32(dgvCustomer.Rows[selectedRowIndex].Cells[4].Value);
+            mobileNo = dgvCustomer.Rows[selectedRowIndex].Cells[2].Value.ToString();
+            g1.mNo = mobileNo;
+            g1.dgIndex = Convert.ToString(selectedRowIndex);
+            g1.Dispose();
         }
-               
+
+        public int func1
+        {
+            get
+            {
+                return selectedRowIndex;
+            }
+            set
+            {
+                g1.dgIndex = Convert.ToString(selectedRowIndex);
+            }
+        }
     }
 }

@@ -24,12 +24,15 @@ namespace Inventory
 
         private void AddItem_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'inventoryDataSet11.tblWarehouse' table. You can move, or remove it, as needed.
+            this.tblWarehouseTableAdapter.Fill(this.inventoryDataSet11.tblWarehouse);
             // TODO: This line of code loads data into the 'inventoryDataSet1.tblCategory' table. You can move, or remove it, as needed.
             this.tblCategoryTableAdapter.Fill(this.inventoryDataSet1.tblCategory);
             // TODO: This line of code loads data into the 'inventoryDataSet.tblBrand' table. You can move, or remove it, as needed.
             this.tblBrandTableAdapter.Fill(this.inventoryDataSet.tblBrand);
             ddlBrandName.Text = "-----Select Brand-----";
             ddlCategoryName.Text = "-----Select Category-----";
+            ddlWarehouse.Text = "-----Select Warehouse-----";
         }
 
         bool ValidateInput()
@@ -74,6 +77,8 @@ namespace Inventory
                 cmd.Parameters.AddWithValue("@categoryName", ddlCategoryName.SelectedValue);
                 cmd.Parameters.AddWithValue("@item", txtItem.Text);
                 cmd.Parameters.AddWithValue("@desc", txtDescription.Text);
+                cmd.Parameters.AddWithValue("@stok", Convert.ToInt32(txtStock.Text));
+                cmd.Parameters.AddWithValue("@ware", ddlWarehouse.SelectedValue);
                 cmd.Parameters.AddWithValue("@cost", Convert.ToDecimal(txtPrice.Text));
                 con.Open();
 
@@ -89,6 +94,9 @@ namespace Inventory
                 ddlBrandName.Text = "-----Select Brand-----";
                 ddlCategoryName.Text = "-----Select Category-----";
                 txtItem.Text = txtPrice.Text = "";
+                txtDescription.Text = "";
+                ddlWarehouse.Text = "-----Select Warehouse-----";
+                btnView_Click(sender, e);
             }
         }
 
