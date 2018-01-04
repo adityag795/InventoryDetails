@@ -11,28 +11,30 @@ using System.Configuration;
 
 namespace Inventory
 {
- 
     public partial class FindCustomer : Form
     {
         public static string mobileNo = "";
         SqlCommand cmd;
         SqlConnection con;
         String Cstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-
+        public int CustomerId;
         public FindCustomer()
         {
             InitializeComponent();
+            txtCustomer.Text = "-----Enter Customer's Name or Mobile Number-----";
         }
 
         private void FindCustomer_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'inventoryDataSet12.tblCustomer' table. You can move, or remove it, as needed.
+            this.tblCustomerTableAdapter1.Fill(this.inventoryDataSet12.tblCustomer);
             // TODO: This line of code loads data into the 'inventoryDataSet10.tblCustomer' table. You can move, or remove it, as needed.
             this.tblCustomerTableAdapter.Fill(this.inventoryDataSet10.tblCustomer);
         }
 
         private void txtCustomer_TextChanged(object sender, EventArgs e)
         {
-            if (!(String.IsNullOrEmpty(txtCustomer.Text)))
+            if (!(String.IsNullOrEmpty(txtCustomer.Text)) && txtCustomer.Text != "-----Enter Customer's Name or Mobile Number-----")
             {
                 using (con = new SqlConnection(Cstring))
                 {
@@ -64,11 +66,9 @@ namespace Inventory
             }
         }
 
-        int selectedRowIndex;
-        InvoiceGenerator g1;
-
         private void dgvCustomer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            /*
             g1 = new InvoiceGenerator();
             selectedRowIndex = dgvCustomer.SelectedCells[0].RowIndex;
             DataGridViewRow selectedRow = dgvCustomer.Rows[selectedRowIndex];
@@ -77,18 +77,21 @@ namespace Inventory
             g1.mNo = mobileNo;
             g1.dgIndex = Convert.ToString(selectedRowIndex);
             g1.Dispose();
+            */
+            CustomerId = Convert.ToInt32(dgvCustomer.SelectedCells[0].Value);
+            this.Close();
         }
 
-        public int func1
+        private void txtCustomer_Click(object sender, EventArgs e)
         {
-            get
-            {
-                return selectedRowIndex;
-            }
-            set
-            {
-                g1.dgIndex = Convert.ToString(selectedRowIndex);
-            }
+            txtCustomer.Text = "";
         }
+
+        private void txtCustomer_Leave(object sender, EventArgs e)
+        {
+            if (txtCustomer.Text == "")
+                txtCustomer.Text = "-----Enter Customer's Name or Mobile Number-----";
+        }
+
     }
 }

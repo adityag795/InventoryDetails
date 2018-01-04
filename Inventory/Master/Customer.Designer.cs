@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvCustomer = new System.Windows.Forms.DataGridView();
             this.btnView = new System.Windows.Forms.Button();
@@ -43,13 +44,25 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtPan = new System.Windows.Forms.TextBox();
+            this.inventoryDataSet14 = new Inventory.InventoryDataSet14();
+            this.tblCustomerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblCustomerTableAdapter = new Inventory.InventoryDataSet14TableAdapters.tblCustomerTableAdapter();
+            this.customIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mobileNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pANcardDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblCustomerBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvCustomer
             // 
             this.dgvCustomer.AllowUserToAddRows = false;
             this.dgvCustomer.AllowUserToDeleteRows = false;
+            this.dgvCustomer.AutoGenerateColumns = false;
             this.dgvCustomer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -60,18 +73,27 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvCustomer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCustomer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.customIdDataGridViewTextBoxColumn,
+            this.customerNameDataGridViewTextBoxColumn,
+            this.mobileNoDataGridViewTextBoxColumn,
+            this.addressDataGridViewTextBoxColumn,
+            this.emailDataGridViewTextBoxColumn,
+            this.pANcardDataGridViewTextBoxColumn});
+            this.dgvCustomer.DataSource = this.tblCustomerBindingSource;
             this.dgvCustomer.GridColor = System.Drawing.SystemColors.Highlight;
             this.dgvCustomer.Location = new System.Drawing.Point(33, 296);
             this.dgvCustomer.Name = "dgvCustomer";
+            this.dgvCustomer.ReadOnly = true;
             this.dgvCustomer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCustomer.Size = new System.Drawing.Size(625, 195);
+            this.dgvCustomer.Size = new System.Drawing.Size(1140, 195);
             this.dgvCustomer.TabIndex = 24;
             this.dgvCustomer.Click += new System.EventHandler(this.dgvCustomer_Click);
             // 
             // btnView
             // 
             this.btnView.Font = new System.Drawing.Font("Dubai Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnView.Location = new System.Drawing.Point(435, 244);
+            this.btnView.Location = new System.Drawing.Point(926, 244);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 34);
             this.btnView.TabIndex = 23;
@@ -82,7 +104,7 @@
             // btnAddCustomer
             // 
             this.btnAddCustomer.Font = new System.Drawing.Font("Dubai Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddCustomer.Location = new System.Drawing.Point(163, 244);
+            this.btnAddCustomer.Location = new System.Drawing.Point(365, 244);
             this.btnAddCustomer.Name = "btnAddCustomer";
             this.btnAddCustomer.Size = new System.Drawing.Size(136, 34);
             this.btnAddCustomer.TabIndex = 22;
@@ -94,7 +116,7 @@
             // 
             this.txtCustomer.Location = new System.Drawing.Point(190, 70);
             this.txtCustomer.Name = "txtCustomer";
-            this.txtCustomer.Size = new System.Drawing.Size(468, 20);
+            this.txtCustomer.Size = new System.Drawing.Size(983, 20);
             this.txtCustomer.TabIndex = 21;
             // 
             // lblCustomerName
@@ -111,7 +133,7 @@
             // 
             this.lblAddCustomer.AutoSize = true;
             this.lblAddCustomer.Font = new System.Drawing.Font("Dubai Medium", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddCustomer.Location = new System.Drawing.Point(264, 9);
+            this.lblAddCustomer.Location = new System.Drawing.Point(562, 9);
             this.lblAddCustomer.Name = "lblAddCustomer";
             this.lblAddCustomer.Size = new System.Drawing.Size(173, 40);
             this.lblAddCustomer.TabIndex = 19;
@@ -131,7 +153,7 @@
             // 
             this.txtMobileNum.Location = new System.Drawing.Point(190, 106);
             this.txtMobileNum.Name = "txtMobileNum";
-            this.txtMobileNum.Size = new System.Drawing.Size(468, 20);
+            this.txtMobileNum.Size = new System.Drawing.Size(983, 20);
             this.txtMobileNum.TabIndex = 26;
             // 
             // label2
@@ -148,7 +170,7 @@
             // 
             this.txtAddress.Location = new System.Drawing.Point(190, 139);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(468, 20);
+            this.txtAddress.Size = new System.Drawing.Size(983, 20);
             this.txtAddress.TabIndex = 28;
             // 
             // label3
@@ -165,7 +187,7 @@
             // 
             this.txtEmail.Location = new System.Drawing.Point(190, 172);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(468, 20);
+            this.txtEmail.Size = new System.Drawing.Size(983, 20);
             this.txtEmail.TabIndex = 30;
             // 
             // label4
@@ -182,15 +204,71 @@
             // 
             this.txtPan.Location = new System.Drawing.Point(190, 205);
             this.txtPan.Name = "txtPan";
-            this.txtPan.Size = new System.Drawing.Size(468, 20);
+            this.txtPan.Size = new System.Drawing.Size(983, 20);
             this.txtPan.TabIndex = 32;
+            // 
+            // inventoryDataSet14
+            // 
+            this.inventoryDataSet14.DataSetName = "InventoryDataSet14";
+            this.inventoryDataSet14.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblCustomerBindingSource
+            // 
+            this.tblCustomerBindingSource.DataMember = "tblCustomer";
+            this.tblCustomerBindingSource.DataSource = this.inventoryDataSet14;
+            // 
+            // tblCustomerTableAdapter
+            // 
+            this.tblCustomerTableAdapter.ClearBeforeFill = true;
+            // 
+            // customIdDataGridViewTextBoxColumn
+            // 
+            this.customIdDataGridViewTextBoxColumn.DataPropertyName = "CustomId";
+            this.customIdDataGridViewTextBoxColumn.HeaderText = "CustomId";
+            this.customIdDataGridViewTextBoxColumn.Name = "customIdDataGridViewTextBoxColumn";
+            this.customIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // customerNameDataGridViewTextBoxColumn
+            // 
+            this.customerNameDataGridViewTextBoxColumn.DataPropertyName = "CustomerName";
+            this.customerNameDataGridViewTextBoxColumn.HeaderText = "CustomerName";
+            this.customerNameDataGridViewTextBoxColumn.Name = "customerNameDataGridViewTextBoxColumn";
+            this.customerNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // mobileNoDataGridViewTextBoxColumn
+            // 
+            this.mobileNoDataGridViewTextBoxColumn.DataPropertyName = "MobileNo";
+            this.mobileNoDataGridViewTextBoxColumn.HeaderText = "MobileNo";
+            this.mobileNoDataGridViewTextBoxColumn.Name = "mobileNoDataGridViewTextBoxColumn";
+            this.mobileNoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // pANcardDataGridViewTextBoxColumn
+            // 
+            this.pANcardDataGridViewTextBoxColumn.DataPropertyName = "PANcard";
+            this.pANcardDataGridViewTextBoxColumn.HeaderText = "PANcard";
+            this.pANcardDataGridViewTextBoxColumn.Name = "pANcardDataGridViewTextBoxColumn";
+            this.pANcardDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // AddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.ClientSize = new System.Drawing.Size(696, 524);
+            this.ClientSize = new System.Drawing.Size(1216, 524);
             this.Controls.Add(this.txtPan);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtEmail);
@@ -207,7 +285,10 @@
             this.Controls.Add(this.lblAddCustomer);
             this.Name = "AddCustomer";
             this.Text = "Customer";
+            this.Load += new System.EventHandler(this.AddCustomer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblCustomerBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,5 +310,14 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtPan;
+        private InventoryDataSet14 inventoryDataSet14;
+        private System.Windows.Forms.BindingSource tblCustomerBindingSource;
+        private InventoryDataSet14TableAdapters.tblCustomerTableAdapter tblCustomerTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn customIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn customerNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mobileNoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pANcardDataGridViewTextBoxColumn;
     }
 }

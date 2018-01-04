@@ -74,5 +74,17 @@ namespace Inventory
             InvoiceGenerator ig = new InvoiceGenerator();
             ig.ShowDialog();
         }
+
+        private void reportsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Reports rep = new Reports();
+            rep.ShowDialog();
+        }
+
+        private void clientsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClientRecord cr = new ClientRecord();
+            cr.ShowDialog();
+        }
     }
 }

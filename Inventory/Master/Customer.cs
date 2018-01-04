@@ -16,6 +16,7 @@ namespace Inventory
         SqlCommand cmd;
         SqlConnection con;
         String Cstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
+        public string name;
 
         public AddCustomer()
         {
@@ -32,6 +33,7 @@ namespace Inventory
                     string query = "INSERT INTO tblCustomer (CustomerName, MobileNo, Address, Email, PANcard) VALUES ('" 
                         + txtCustomer.Text + "', '" + txtMobileNum.Text + "', '" + txtAddress.Text + "', '" 
                         + txtEmail.Text + "', '" + txtPan.Text + "')";
+                    name = txtCustomer.Text;
                     cmd = new SqlCommand(query, con);
                     con.Open();
                     int rowsAdded = cmd.ExecuteNonQuery();
@@ -85,6 +87,12 @@ namespace Inventory
         private void selectedRowsButton_Click(object sender, System.EventArgs e)
         {
             
+        }
+
+        private void AddCustomer_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'inventoryDataSet14.tblCustomer' table. You can move, or remove it, as needed.
+            this.tblCustomerTableAdapter.Fill(this.inventoryDataSet14.tblCustomer);
         }
     }
 }

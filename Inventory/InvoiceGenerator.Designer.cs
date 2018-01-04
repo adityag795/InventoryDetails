@@ -59,12 +59,6 @@
             this.txtInvoiceNo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvInvoice = new System.Windows.Forms.DataGridView();
-            this.SerialNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.inventoryDataSet3 = new Inventory.InventoryDataSet3();
             this.tblItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tblItemTableAdapter = new Inventory.InventoryDataSet3TableAdapters.tblItemTableAdapter();
@@ -80,6 +74,12 @@
             this.tblItemBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tblItemTableAdapter1 = new Inventory.InventoryDataSet9TableAdapters.tblItemTableAdapter();
             this.btnDelRow = new System.Windows.Forms.Button();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SerialNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblCategoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryDataSet5)).BeginInit();
@@ -200,15 +200,12 @@
             // 
             // ddlWarehouse
             // 
-            this.ddlWarehouse.DataSource = this.tblWarehouseBindingSource;
-            this.ddlWarehouse.DisplayMember = "WarehouseName";
             this.ddlWarehouse.Font = new System.Drawing.Font("Dubai Medium", 12F);
             this.ddlWarehouse.FormattingEnabled = true;
             this.ddlWarehouse.Location = new System.Drawing.Point(543, 103);
             this.ddlWarehouse.Name = "ddlWarehouse";
             this.ddlWarehouse.Size = new System.Drawing.Size(359, 35);
             this.ddlWarehouse.TabIndex = 13;
-            this.ddlWarehouse.ValueMember = "WarehouseName";
             // 
             // tblWarehouseBindingSource
             // 
@@ -235,7 +232,7 @@
             this.btnFindCustomer.Font = new System.Drawing.Font("Dubai Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFindCustomer.Location = new System.Drawing.Point(761, 10);
             this.btnFindCustomer.Name = "btnFindCustomer";
-            this.btnFindCustomer.Size = new System.Drawing.Size(141, 36);
+            this.btnFindCustomer.Size = new System.Drawing.Size(141, 37);
             this.btnFindCustomer.TabIndex = 11;
             this.btnFindCustomer.Text = "Find Customer";
             this.btnFindCustomer.UseVisualStyleBackColor = true;
@@ -315,7 +312,7 @@
             // btnNewCustomer
             // 
             this.btnNewCustomer.Font = new System.Drawing.Font("Dubai Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewCustomer.Location = new System.Drawing.Point(606, 10);
+            this.btnNewCustomer.Location = new System.Drawing.Point(609, 10);
             this.btnNewCustomer.Name = "btnNewCustomer";
             this.btnNewCustomer.Size = new System.Drawing.Size(141, 38);
             this.btnNewCustomer.TabIndex = 3;
@@ -383,36 +380,6 @@
             this.dgvInvoice.TabIndex = 2;
             this.dgvInvoice.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvInvoice_CellClick);
             this.dgvInvoice.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvInvoice_CellEndEdit);
-            // 
-            // SerialNo
-            // 
-            this.SerialNo.HeaderText = "SerialNo";
-            this.SerialNo.Name = "SerialNo";
-            // 
-            // ItemCode
-            // 
-            this.ItemCode.HeaderText = "Item Code";
-            this.ItemCode.Name = "ItemCode";
-            // 
-            // Description
-            // 
-            this.Description.HeaderText = "Description";
-            this.Description.Name = "Description";
-            // 
-            // UnitPrice
-            // 
-            this.UnitPrice.HeaderText = "Unit Price";
-            this.UnitPrice.Name = "UnitPrice";
-            // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.Name = "Quantity";
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Total";
-            this.Total.Name = "Total";
             // 
             // inventoryDataSet3
             // 
@@ -502,6 +469,42 @@
             this.btnDelRow.UseVisualStyleBackColor = true;
             this.btnDelRow.Click += new System.EventHandler(this.button1_Click);
             // 
+            // Total
+            // 
+            this.Total.FillWeight = 89.54314F;
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            // 
+            // Quantity
+            // 
+            this.Quantity.FillWeight = 89.54314F;
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Name = "Quantity";
+            // 
+            // UnitPrice
+            // 
+            this.UnitPrice.FillWeight = 89.54314F;
+            this.UnitPrice.HeaderText = "Unit Price";
+            this.UnitPrice.Name = "UnitPrice";
+            // 
+            // Description
+            // 
+            this.Description.FillWeight = 89.54314F;
+            this.Description.HeaderText = "Description";
+            this.Description.Name = "Description";
+            // 
+            // ItemCode
+            // 
+            this.ItemCode.FillWeight = 89.54314F;
+            this.ItemCode.HeaderText = "Item Code";
+            this.ItemCode.Name = "ItemCode";
+            // 
+            // SerialNo
+            // 
+            this.SerialNo.FillWeight = 30F;
+            this.SerialNo.HeaderText = "SerialNo";
+            this.SerialNo.Name = "SerialNo";
+            // 
             // InvoiceGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -590,12 +593,12 @@
         private System.Windows.Forms.BindingSource tblItemBindingSource1;
         private InventoryDataSet9TableAdapters.tblItemTableAdapter tblItemTableAdapter1;
         public System.Windows.Forms.TextBox txtMobileNo;
+        private System.Windows.Forms.Button btnDelRow;
         private System.Windows.Forms.DataGridViewTextBoxColumn SerialNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
-        private System.Windows.Forms.Button btnDelRow;
     }
 }

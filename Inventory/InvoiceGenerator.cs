@@ -13,10 +13,10 @@ namespace Inventory
 {
     public partial class InvoiceGenerator : Form
     {
-        public string mNo="";
+        public string mNo = "";
         public String dgIndex = "";
         SqlCommand cmd;
-        SqlConnection con;
+        SqlConnection con,con2;
         String Cstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
         int x = 1;
         double Grandtotal = 0;
@@ -76,7 +76,7 @@ namespace Inventory
             {
                 if (ddlBrand.Text != "----Select Brand----" && ddlCategory.Text != "----Select Category----")
                 {
-                    string query = "SELECT ItemId, ItemName, Price AS 'Unit Price', Description FROM tblItem WHERE Brand = '" 
+                    string query = "SELECT ItemId, ItemName, Price AS 'Unit Price', Description FROM tblItem WHERE Brand = '"
                         + ddlBrand.Text + "' AND Category = '" + ddlCategory.Text + "'";
                     //cmd = new SqlCommand(query, con);
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(query, con);
@@ -85,7 +85,7 @@ namespace Inventory
                     // delete commands based on selectCommand. These are used to
                     // update the database.
                     SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
-                    
+
                     // Populate a new data table and bind it to the BindingSource.
                     DataTable table = new DataTable();
                     table.Locale = System.Globalization.CultureInfo.InvariantCulture;
@@ -193,7 +193,7 @@ namespace Inventory
             row["Quantity"] = "1";
             row["Total"] = (Convert.ToDouble(row["UnitPrice"]) * Convert.ToDouble(row["Quantity"])).ToString();
             dt.Rows.Add(row);
-            
+
             foreach (DataRow Drow in dt.Rows)
             {
                 int num = dgvInvoice.Rows.Add();
@@ -205,6 +205,16 @@ namespace Inventory
                 dgvInvoice.Rows[num].Cells[5].Value = Drow["Total"].ToString();
                 Grandtotal += Convert.ToDouble(dgvInvoice.Rows[num].Cells[5].Value);
                 txtTotal.Text = Convert.ToString(Grandtotal);
+
+                string query = "SELECT Warehouse FROM tblItem WHERE ItemId = '" + (string)dgvInvoice.Rows[num].Cells[1].Value + "'";
+                using (con = new SqlConnection(Cstring))
+                {
+                    cmd = new SqlCommand(query, con);
+                    con.Open();
+                    string warehouse = Convert.ToString(cmd.ExecuteScalar());
+                    if (!(ddlWarehouse.Items.Contains(warehouse)))
+                        ddlWarehouse.Items.Add(warehouse);
+                }
             }
         }
 
@@ -224,69 +234,95 @@ namespace Inventory
         {
             FindCustomer fc = new FindCustomer();
             fc.ShowDialog();
+            int Cid = fc.CustomerId;
+            string query = "SELECT CustomerName FROM tblCustomer WHERE CustomId = " + Cid;
+            using (con = new SqlConnection(Cstring))
+            {
+                cmd = new SqlCommand(query, con);
+                con.Open();
+                string name = Convert.ToString(cmd.ExecuteScalar());
+                if (ddlCustomer.Items.Contains(name))
+                {
+                    int index = ddlCustomer.FindString(name);
+                    ddlCustomer.SelectedItem = ddlCustomer.Items[index];
+                }
+                else
+                    MessageBox.Show("Dropdown list does not contain the selected name.");
+            }
         }
 
         private void btnInvoice_Click(object sender, EventArgs e)
         {
             if (ValidateInput())
             {
-                using (con = new SqlConnection(Cstring))
+                using (con2 = new SqlConnection(Cstring))
                 {
-                    string query = "INSERT INTO HInvoice (InvoiceNo, Salesperson, CustomerName, MobileNo, Warehouse, Time) VALUES ('"
-                        + txtInvoiceNo.Text + "','" + ddlSalesperson.SelectedValue + "','" + ddlCustomer.SelectedValue
-                        + "'," + Convert.ToDouble(txtMobileNo.Text) + ",'" + ddlWarehouse.Text + "',GETDATE())";
-                    
-                    con.Open();
-                    SqlTransaction tran = con.BeginTransaction();
-                    cmd = new SqlCommand(query, con, tran);
-                    try
+                    SqlTransaction tran1;
+                    SqlTransaction tran2;
+                    using (con = new SqlConnection(Cstring))
                     {
-                        int headerRow = cmd.ExecuteNonQuery();
+                        string query = "INSERT INTO HInvoice (InvoiceNo, Salesperson, CustomerName, MobileNo, Warehouse, Time) VALUES ('"
+                            + txtInvoiceNo.Text + "','" + ddlSalesperson.SelectedValue + "','" + ddlCustomer.SelectedValue
+                            + "'," + Convert.ToDouble(txtMobileNo.Text) + ",'" + ddlWarehouse.Text + "',GETDATE())";
 
-                        con.Close();
                         con.Open();
-                        int i;
-                        for (i = 0; i < dgvInvoice.Rows.Count - 1; i++)
-                        {
-                            string StrQuery = @"INSERT INTO RInvoice (SerialNo,ItemCode,Description,UnitPrice,Quantity,Total,Time) VALUES ("
-                            + dgvInvoice.Rows[i].Cells["SerialNo"].Value + ", "
-                            + dgvInvoice.Rows[i].Cells["ItemCode"].Value + ", '"
-                            + dgvInvoice.Rows[i].Cells["Description"].Value + "', "
-                            + Convert.ToDouble(dgvInvoice.Rows[i].Cells["UnitPrice"].Value) + ", "
-                            + Convert.ToInt32(dgvInvoice.Rows[i].Cells["Quantity"].Value) + ", "
-                            + Convert.ToDouble(dgvInvoice.Rows[i].Cells["Total"].Value) + ", "
-                            + "GETDATE() );";
-
-                            SqlCommand cmd4 = new SqlCommand(StrQuery, con);
-                            //cmd4.CommandText = StrQuery;
-                            cmd4.ExecuteNonQuery();
-
-                            string getStock = "SELECT Stock FROM tblItem WHERE ItemId = " + dgvInvoice.Rows[i].Cells["ItemCode"].Value;
-                            SqlCommand cmd2 = new SqlCommand(getStock, con);
-                            int stock = Convert.ToInt32(cmd2.ExecuteScalar());
-                            stock -= Convert.ToInt32(dgvInvoice.Rows[i].Cells["Quantity"].Value);
-
-                            if (stock <= 0)
-                                throw new StockOutException("Not enough stock in warehouse.");
-                            string update = "UPDATE tblItem SET Stock = " + stock + " WHERE ItemId = " + dgvInvoice.Rows[i].Cells["ItemCode"].Value;
-                            SqlCommand cmd3 = new SqlCommand(update, con);
-                            cmd3.ExecuteNonQuery();
-                        }
-                        //tran.Commit();
-                        MessageBox.Show(headerRow + " Invoice Header and " + ((int)i) + " Invoice Rows added.");
-                    }
-                    catch (StockOutException se)
-                    {
-                        MessageBox.Show(se.Message);
+                        tran1 = con.BeginTransaction();
+                        con2.Open();
+                        tran2 = con2.BeginTransaction();
+                        //cmd = new SqlCommand(query, con, tran);
                         try
                         {
-                            tran.Rollback();
+                            SqlCommand cmx = new SqlCommand(query, con, tran1);
+                            int headerRow = cmx.ExecuteNonQuery();
+                            tran1.Commit();
+                            //con.Close();
+                            
+                            int i;
+                            for (i = 0; i < dgvInvoice.Rows.Count - 1; i++)
+                            {
+                                string StrQuery = @"INSERT INTO RInvoice (SerialNo,InvoiceNo,ItemCode,Description,UnitPrice,Quantity,Total,Time) VALUES ("
+                                + dgvInvoice.Rows[i].Cells["SerialNo"].Value + ", '"
+                                + txtInvoiceNo.Text + "', "
+                                + dgvInvoice.Rows[i].Cells["ItemCode"].Value + ", '"
+                                + dgvInvoice.Rows[i].Cells["Description"].Value + "', "
+                                + Convert.ToDouble(dgvInvoice.Rows[i].Cells["UnitPrice"].Value) + ", "
+                                + Convert.ToInt32(dgvInvoice.Rows[i].Cells["Quantity"].Value) + ", "
+                                + Convert.ToDouble(dgvInvoice.Rows[i].Cells["Total"].Value) + ", "
+                                + "GETDATE() );";
+
+                                SqlCommand cmd4 = new SqlCommand(StrQuery, con2, tran2);
+                                //cmd4.CommandText = StrQuery;
+                                cmd4.ExecuteNonQuery();
+                                
+
+                                string getStock = "SELECT Stock FROM tblItem WHERE ItemId = " + dgvInvoice.Rows[i].Cells["ItemCode"].Value;
+                                SqlCommand cmd2 = new SqlCommand(getStock, con);
+                                int stock = Convert.ToInt32(cmd2.ExecuteScalar());
+                                stock -= Convert.ToInt32(dgvInvoice.Rows[i].Cells["Quantity"].Value);
+
+                                if (stock <= 0)
+                                    throw new StockOutException("Not enough stock in warehouse.");
+                                string update = "UPDATE tblItem SET Stock = " + stock + " WHERE ItemId = " + dgvInvoice.Rows[i].Cells["ItemCode"].Value;
+                                SqlCommand cmd3 = new SqlCommand(update, con);
+                                cmd3.ExecuteNonQuery();
+                            }
+                            tran2.Commit();
+                            MessageBox.Show(headerRow + " Invoice Header and " + ((int)i) + " Invoice Rows added.");
                         }
-                        catch (Exception exRollback)
+                        catch (StockOutException se)
                         {
-                            Console.WriteLine(exRollback.Message);
+                            MessageBox.Show(se.Message);
+                            try
+                            {
+                                tran1.Rollback();
+                                tran2.Rollback();
+                            }
+                            catch (Exception exRollback)
+                            {
+                                Console.WriteLine(exRollback.Message);
+                            }
+                            //throw;
                         }
-                        //throw;
                     }
                 }
             }
@@ -294,8 +330,111 @@ namespace Inventory
 
         private void btnFindInvoice_Click(object sender, EventArgs e)
         {
-            FindInvoice fi = new FindInvoice();
-            fi.ShowDialog();
+            dgvInvoice.Rows.Clear();
+            FindInvoice lob = new FindInvoice();
+
+            lob.MdiParent = this.MdiParent;
+            //this.Enabled = false;
+            lob.ShowDialog();
+            string InvoiceNum = lob.InvoiceNum;
+
+            this.Enabled = true;
+
+            if (InvoiceNum != "")
+            {
+                using (con = new SqlConnection(Cstring))
+                {
+                    string query = "SELECT InvoiceNo,Salesperson,MobileNo,CustomerName,Warehouse FROM HInvoice WHERE InvoiceNo = '"
+                                  + InvoiceNum + "'";
+                    string query2 = "SELECT SerialNo,ItemCode,Description,UnitPrice,Quantity,Total FROM RInvoice WHERE "
+                                  + "InvoiceNo = '" + InvoiceNum + "'";
+                    string query3 = "SELECT count(*) FROM RInvoice where InvoiceNo = '" + InvoiceNum + "'";
+
+                    SqlDataReader dr = null;
+                    con.Open();
+                    try
+                    {
+                        cmd = new SqlCommand(query, con);
+
+                        dr = cmd.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            txtInvoiceNo.Text = dr["InvoiceNo"].ToString();
+                            ddlSalesperson.Text = dr["Salesperson"].ToString();
+                            ddlCustomer.Text = dr["CustomerName"].ToString();
+                            txtMobileNo.Text = dr["MobileNo"].ToString();
+                            ddlWarehouse.Text = dr["Warehouse"].ToString();
+                        }
+                        dr.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        if (dr != null)
+                            dr.Close();
+                        if (con != null)
+                            con.Close();
+                    }
+                    try
+                    {
+                        SqlConnection con2 = new SqlConnection(Cstring);
+                        cmd = new SqlCommand(query2, con2);
+                        con2.Open();
+                        dr = cmd.ExecuteReader();
+                        // Count no. of items in this list.
+                        int rowcount;
+                        using (SqlConnection con3 = new SqlConnection(Cstring))
+                        {
+                            SqlCommand cmd4 = new SqlCommand(query3, con3);
+                            con3.Open();
+                            rowcount = Convert.ToInt32(cmd4.ExecuteScalar());
+                        }
+
+                        DataTable dt = new DataTable();
+                        
+                        dt.Columns.Add("SerialNo");
+                        dt.Columns.Add("ItemCode");
+                        dt.Columns.Add("Description");
+                        dt.Columns.Add("UnitPrice");
+                        dt.Columns.Add("Quantity");
+                        dt.Columns.Add("Total");
+                        
+                        while (dr.Read())
+                        {
+                            DataRow row = dt.NewRow();
+                            row["SerialNo"] = dr["SerialNo"].ToString();
+                            row["ItemCode"] = dr["ItemCode"].ToString();
+                            row["Description"] = dr["Description"].ToString();
+                            row["UnitPrice"] = dr["UnitPrice"].ToString();
+                            row["Quantity"] = dr["Quantity"].ToString();
+                            row["Total"] = dr["Total"].ToString();
+                            dt.Rows.Add(row);
+                        }
+
+                        for (int num = 0; num < rowcount; num++)
+                        {
+                            dgvInvoice.Rows.Add();
+                            dgvInvoice.Rows[num].Cells[0].Value = dt.Rows[num]["SerialNo"].ToString();
+                            dgvInvoice.Rows[num].Cells[1].Value = dt.Rows[num]["ItemCode"].ToString();
+                            dgvInvoice.Rows[num].Cells[2].Value = dt.Rows[num]["Description"].ToString();
+                            dgvInvoice.Rows[num].Cells[3].Value = dt.Rows[num]["UnitPrice"].ToString();
+                            dgvInvoice.Rows[num].Cells[4].Value = dt.Rows[num]["Quantity"].ToString();
+                            dgvInvoice.Rows[num].Cells[5].Value = dt.Rows[num]["Total"].ToString();
+                        }
+                        //dgvInvoice.DataSource = dt;
+                        //dgvInvoice.Rows[0].Cells[0].Value = 
+
+                        con2.Close();
+                        //dt.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        if (dr != null)
+                            dr.Close();
+                        if (con != null)
+                            con.Close();
+                    }
+                }
+            }
         }
 
         private void btnNewCustomer_Click(object sender, EventArgs e)
@@ -313,6 +452,18 @@ namespace Inventory
 
             dgvInvoice.Rows.Clear();
             dgvInvoice.Refresh();
+            
+            /*
+            AddCustomer ac = new AddCustomer();
+            ac.MdiParent = this.MdiParent;
+            ac.ShowDialog();
+            //string name = ac.name;
+            //ddlCustomer.Items.Add(name);
+            ddlCustomer.DataSource = tblCustomerBindingSource;
+           //  ddlCustomer.Refresh();
+           // ddlCustomer.DataBindings.R
+           // ddlCustomer.ResetText();
+             */
         }
 
         private void dgvInvoice_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -320,7 +471,7 @@ namespace Inventory
             // int a = Convert.ToInt32( dgvInvoice.Rows[1].Cells[4].Value);
             // dgvInvoice r1 = SelectedRows.ce;
             int selectedRowIndex = dgvInvoice.SelectedCells[0].RowIndex;
-            DataGridViewRow selectedRow = dgvInvoice.Rows[selectedRowIndex];
+            // DataGridViewRow selectedRow = dgvInvoice.Rows[selectedRowIndex];
             int qty = Convert.ToInt32(dgvInvoice.Rows[selectedRowIndex].Cells[4].Value);
         }
 
@@ -336,14 +487,17 @@ namespace Inventory
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int selectedRowIndex = dgvInvoice.CurrentCell.RowIndex;
-            double ex = Convert.ToDouble(dgvInvoice.Rows[selectedRowIndex].Cells[5].Value);
-            Grandtotal = Grandtotal - ex;
-            txtTotal.Text = Convert.ToString(Grandtotal);
-            dgvInvoice.Rows.RemoveAt(selectedRowIndex);
-            x--;
+            if (dgvInvoice.CurrentCell != null)
+            {
+                int selectedRowIndex = dgvInvoice.CurrentCell.RowIndex;
+                double ex = Convert.ToDouble(dgvInvoice.Rows[selectedRowIndex].Cells[5].Value);
+                Grandtotal = Grandtotal - ex;
+                txtTotal.Text = Convert.ToString(Grandtotal);
+                dgvInvoice.Rows.RemoveAt(selectedRowIndex);
+                x--;
+            }
         }
-        
+
         //private void dgvInvoice_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         //{
         //    dgvInvoice.Rows[e.RowIndex].Cells[CC.5].Value = (Convert.ToDouble(dgvInvoice.Rows[e.RowIndex].Cells[CC.3].Value) * Convert.ToDouble(dgvInvoice.Rows[e.RowIndex].Cells[CC.4].Value)).ToString();
@@ -352,9 +506,9 @@ namespace Inventory
     public class StockOutException : Exception
     {
         public StockOutException() : base() { }
-        public StockOutException(string message) : base(message)
+        public StockOutException(string message)
+            : base(message)
         {
         }
     }
-
 }
